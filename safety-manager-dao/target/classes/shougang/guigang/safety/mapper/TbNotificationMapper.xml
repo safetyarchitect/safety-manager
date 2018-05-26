@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shougang.guigang.safety.mapper.TbNotificationMapper">
+  <resultMap id="BaseResultMap" type="shougang.guigang.safety.pojo.TbNotification">
+    <result column="notification_id" jdbcType="SMALLINT" property="notificationId" />
+    <result column="notification_title" jdbcType="VARCHAR" property="notificationTitle" />
+    <result column="notification_createPerson" jdbcType="VARCHAR" property="notificationCreateperson" />
+    <result column="notification_createTime" jdbcType="DATE" property="notificationCreatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="shougang.guigang.safety.pojo.TbNotification">
+    <result column="notification_content" jdbcType="LONGVARCHAR" property="notificationContent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    notification_id, notification_title, notification_createPerson, notification_createTime
+  </sql>
+  <sql id="Blob_Column_List">
+    notification_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="shougang.guigang.safety.pojo.TbNotificationExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_notification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="shougang.guigang.safety.pojo.TbNotificationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_notification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="shougang.guigang.safety.pojo.TbNotificationExample">
+    delete from tb_notification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="shougang.guigang.safety.pojo.TbNotification">
+    insert into tb_notification (notification_id, notification_title, 
+      notification_createPerson, notification_createTime, 
+      notification_content)
+    values (#{notificationId,jdbcType=SMALLINT}, #{notificationTitle,jdbcType=VARCHAR}, 
+      #{notificationCreateperson,jdbcType=VARCHAR}, #{notificationCreatetime,jdbcType=DATE}, 
+      #{notificationContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="shougang.guigang.safety.pojo.TbNotification">
+    insert into tb_notification
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="notificationId != null">
+        notification_id,
+      </if>
+      <if test="notificationTitle != null">
+        notification_title,
+      </if>
+      <if test="notificationCreateperson != null">
+        notification_createPerson,
+      </if>
+      <if test="notificationCreatetime != null">
+        notification_createTime,
+      </if>
+      <if test="notificationContent != null">
+        notification_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="notificationId != null">
+        #{notificationId,jdbcType=SMALLINT},
+      </if>
+      <if test="notificationTitle != null">
+        #{notificationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="notificationCreateperson != null">
+        #{notificationCreateperson,jdbcType=VARCHAR},
+      </if>
+      <if test="notificationCreatetime != null">
+        #{notificationCreatetime,jdbcType=DATE},
+      </if>
+      <if test="notificationContent != null">
+        #{notificationContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="shougang.guigang.safety.pojo.TbNotificationExample" resultType="java.lang.Long">
+    select count(*) from tb_notification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_notification
+    <set>
+      <if test="record.notificationId != null">
+        notification_id = #{record.notificationId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.notificationTitle != null">
+        notification_title = #{record.notificationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notificationCreateperson != null">
+        notification_createPerson = #{record.notificationCreateperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notificationCreatetime != null">
+        notification_createTime = #{record.notificationCreatetime,jdbcType=DATE},
+      </if>
+      <if test="record.notificationContent != null">
+        notification_content = #{record.notificationContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update tb_notification
+    set notification_id = #{record.notificationId,jdbcType=SMALLINT},
+      notification_title = #{record.notificationTitle,jdbcType=VARCHAR},
+      notification_createPerson = #{record.notificationCreateperson,jdbcType=VARCHAR},
+      notification_createTime = #{record.notificationCreatetime,jdbcType=DATE},
+      notification_content = #{record.notificationContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_notification
+    set notification_id = #{record.notificationId,jdbcType=SMALLINT},
+      notification_title = #{record.notificationTitle,jdbcType=VARCHAR},
+      notification_createPerson = #{record.notificationCreateperson,jdbcType=VARCHAR},
+      notification_createTime = #{record.notificationCreatetime,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

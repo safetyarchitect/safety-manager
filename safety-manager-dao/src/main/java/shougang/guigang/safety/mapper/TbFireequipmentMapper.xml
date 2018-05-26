@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shougang.guigang.safety.mapper.TbFireequipmentMapper">
+  <resultMap id="BaseResultMap" type="shougang.guigang.safety.pojo.TbFireequipment">
+    <result column="fire_id" jdbcType="VARCHAR" property="fireId" />
+    <result column="fire_set" jdbcType="VARCHAR" property="fireSet" />
+    <result column="fire_position" jdbcType="VARCHAR" property="firePosition" />
+    <result column="fire_powder" jdbcType="TINYINT" property="firePowder" />
+    <result column="fire_carbon" jdbcType="TINYINT" property="fireCarbon" />
+    <result column="fire_powderCar" jdbcType="TINYINT" property="firePowdercar" />
+    <result column="fire_hydrant" jdbcType="TINYINT" property="fireHydrant" />
+    <result column="fire_produceDate" jdbcType="DATE" property="fireProducedate" />
+    <result column="fire_checkoutDate" jdbcType="DATE" property="fireCheckoutdate" />
+    <result column="fire_duty" jdbcType="VARCHAR" property="fireDuty" />
+    <result column="fire_unit" jdbcType="VARCHAR" property="fireUnit" />
+    <result column="fire_isInspect" jdbcType="TINYINT" property="fireIsinspect" />
+    <result column="fire_isIntact" jdbcType="TINYINT" property="fireIsintact" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    fire_id, fire_set, fire_position, fire_powder, fire_carbon, fire_powderCar, fire_hydrant, 
+    fire_produceDate, fire_checkoutDate, fire_duty, fire_unit, fire_isInspect, fire_isIntact
+  </sql>
+  <select id="selectByExample" parameterType="shougang.guigang.safety.pojo.TbFireequipmentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_fireEquipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="shougang.guigang.safety.pojo.TbFireequipmentExample">
+    delete from tb_fireEquipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="shougang.guigang.safety.pojo.TbFireequipment">
+    insert into tb_fireEquipment (fire_id, fire_set, fire_position, 
+      fire_powder, fire_carbon, fire_powderCar, 
+      fire_hydrant, fire_produceDate, fire_checkoutDate, 
+      fire_duty, fire_unit, fire_isInspect, 
+      fire_isIntact)
+    values (#{fireId,jdbcType=VARCHAR}, #{fireSet,jdbcType=VARCHAR}, #{firePosition,jdbcType=VARCHAR}, 
+      #{firePowder,jdbcType=TINYINT}, #{fireCarbon,jdbcType=TINYINT}, #{firePowdercar,jdbcType=TINYINT}, 
+      #{fireHydrant,jdbcType=TINYINT}, #{fireProducedate,jdbcType=DATE}, #{fireCheckoutdate,jdbcType=DATE}, 
+      #{fireDuty,jdbcType=VARCHAR}, #{fireUnit,jdbcType=VARCHAR}, #{fireIsinspect,jdbcType=TINYINT}, 
+      #{fireIsintact,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="shougang.guigang.safety.pojo.TbFireequipment">
+    insert into tb_fireEquipment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fireId != null">
+        fire_id,
+      </if>
+      <if test="fireSet != null">
+        fire_set,
+      </if>
+      <if test="firePosition != null">
+        fire_position,
+      </if>
+      <if test="firePowder != null">
+        fire_powder,
+      </if>
+      <if test="fireCarbon != null">
+        fire_carbon,
+      </if>
+      <if test="firePowdercar != null">
+        fire_powderCar,
+      </if>
+      <if test="fireHydrant != null">
+        fire_hydrant,
+      </if>
+      <if test="fireProducedate != null">
+        fire_produceDate,
+      </if>
+      <if test="fireCheckoutdate != null">
+        fire_checkoutDate,
+      </if>
+      <if test="fireDuty != null">
+        fire_duty,
+      </if>
+      <if test="fireUnit != null">
+        fire_unit,
+      </if>
+      <if test="fireIsinspect != null">
+        fire_isInspect,
+      </if>
+      <if test="fireIsintact != null">
+        fire_isIntact,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fireId != null">
+        #{fireId,jdbcType=VARCHAR},
+      </if>
+      <if test="fireSet != null">
+        #{fireSet,jdbcType=VARCHAR},
+      </if>
+      <if test="firePosition != null">
+        #{firePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="firePowder != null">
+        #{firePowder,jdbcType=TINYINT},
+      </if>
+      <if test="fireCarbon != null">
+        #{fireCarbon,jdbcType=TINYINT},
+      </if>
+      <if test="firePowdercar != null">
+        #{firePowdercar,jdbcType=TINYINT},
+      </if>
+      <if test="fireHydrant != null">
+        #{fireHydrant,jdbcType=TINYINT},
+      </if>
+      <if test="fireProducedate != null">
+        #{fireProducedate,jdbcType=DATE},
+      </if>
+      <if test="fireCheckoutdate != null">
+        #{fireCheckoutdate,jdbcType=DATE},
+      </if>
+      <if test="fireDuty != null">
+        #{fireDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="fireUnit != null">
+        #{fireUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="fireIsinspect != null">
+        #{fireIsinspect,jdbcType=TINYINT},
+      </if>
+      <if test="fireIsintact != null">
+        #{fireIsintact,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="shougang.guigang.safety.pojo.TbFireequipmentExample" resultType="java.lang.Long">
+    select count(*) from tb_fireEquipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_fireEquipment
+    <set>
+      <if test="record.fireId != null">
+        fire_id = #{record.fireId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireSet != null">
+        fire_set = #{record.fireSet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firePosition != null">
+        fire_position = #{record.firePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firePowder != null">
+        fire_powder = #{record.firePowder,jdbcType=TINYINT},
+      </if>
+      <if test="record.fireCarbon != null">
+        fire_carbon = #{record.fireCarbon,jdbcType=TINYINT},
+      </if>
+      <if test="record.firePowdercar != null">
+        fire_powderCar = #{record.firePowdercar,jdbcType=TINYINT},
+      </if>
+      <if test="record.fireHydrant != null">
+        fire_hydrant = #{record.fireHydrant,jdbcType=TINYINT},
+      </if>
+      <if test="record.fireProducedate != null">
+        fire_produceDate = #{record.fireProducedate,jdbcType=DATE},
+      </if>
+      <if test="record.fireCheckoutdate != null">
+        fire_checkoutDate = #{record.fireCheckoutdate,jdbcType=DATE},
+      </if>
+      <if test="record.fireDuty != null">
+        fire_duty = #{record.fireDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireUnit != null">
+        fire_unit = #{record.fireUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fireIsinspect != null">
+        fire_isInspect = #{record.fireIsinspect,jdbcType=TINYINT},
+      </if>
+      <if test="record.fireIsintact != null">
+        fire_isIntact = #{record.fireIsintact,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_fireEquipment
+    set fire_id = #{record.fireId,jdbcType=VARCHAR},
+      fire_set = #{record.fireSet,jdbcType=VARCHAR},
+      fire_position = #{record.firePosition,jdbcType=VARCHAR},
+      fire_powder = #{record.firePowder,jdbcType=TINYINT},
+      fire_carbon = #{record.fireCarbon,jdbcType=TINYINT},
+      fire_powderCar = #{record.firePowdercar,jdbcType=TINYINT},
+      fire_hydrant = #{record.fireHydrant,jdbcType=TINYINT},
+      fire_produceDate = #{record.fireProducedate,jdbcType=DATE},
+      fire_checkoutDate = #{record.fireCheckoutdate,jdbcType=DATE},
+      fire_duty = #{record.fireDuty,jdbcType=VARCHAR},
+      fire_unit = #{record.fireUnit,jdbcType=VARCHAR},
+      fire_isInspect = #{record.fireIsinspect,jdbcType=TINYINT},
+      fire_isIntact = #{record.fireIsintact,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

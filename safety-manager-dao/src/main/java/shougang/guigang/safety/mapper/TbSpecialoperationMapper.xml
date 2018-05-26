@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shougang.guigang.safety.mapper.TbSpecialoperationMapper">
+  <resultMap id="BaseResultMap" type="shougang.guigang.safety.pojo.TbSpecialoperation">
+    <result column="special_id" jdbcType="VARCHAR" property="specialId" />
+    <result column="special_name" jdbcType="VARCHAR" property="specialName" />
+    <result column="special_sex" jdbcType="VARCHAR" property="specialSex" />
+    <result column="special_unit" jdbcType="VARCHAR" property="specialUnit" />
+    <result column="special_team" jdbcType="VARCHAR" property="specialTeam" />
+    <result column="special_certificate" jdbcType="VARCHAR" property="specialCertificate" />
+    <result column="special_dossier" jdbcType="VARCHAR" property="specialDossier" />
+    <result column="special_item" jdbcType="VARCHAR" property="specialItem" />
+    <result column="special_itemCode" jdbcType="VARCHAR" property="specialItemcode" />
+    <result column="special_authority" jdbcType="VARCHAR" property="specialAuthority" />
+    <result column="special_approvalDate" jdbcType="VARCHAR" property="specialApprovaldate" />
+    <result column="special_effectiveDate" jdbcType="VARCHAR" property="specialEffectivedate" />
+    <result column="special_review1" jdbcType="VARCHAR" property="specialReview1" />
+    <result column="special_review2" jdbcType="VARCHAR" property="specialReview2" />
+    <result column="special_review3" jdbcType="VARCHAR" property="specialReview3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    special_id, special_name, special_sex, special_unit, special_team, special_certificate, 
+    special_dossier, special_item, special_itemCode, special_authority, special_approvalDate, 
+    special_effectiveDate, special_review1, special_review2, special_review3
+  </sql>
+  <select id="selectByExample" parameterType="shougang.guigang.safety.pojo.TbSpecialoperationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_specialOperation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="shougang.guigang.safety.pojo.TbSpecialoperationExample">
+    delete from tb_specialOperation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="shougang.guigang.safety.pojo.TbSpecialoperation">
+    insert into tb_specialOperation (special_id, special_name, special_sex, 
+      special_unit, special_team, special_certificate, 
+      special_dossier, special_item, special_itemCode, 
+      special_authority, special_approvalDate, 
+      special_effectiveDate, special_review1, special_review2, 
+      special_review3)
+    values (#{specialId,jdbcType=VARCHAR}, #{specialName,jdbcType=VARCHAR}, #{specialSex,jdbcType=VARCHAR}, 
+      #{specialUnit,jdbcType=VARCHAR}, #{specialTeam,jdbcType=VARCHAR}, #{specialCertificate,jdbcType=VARCHAR}, 
+      #{specialDossier,jdbcType=VARCHAR}, #{specialItem,jdbcType=VARCHAR}, #{specialItemcode,jdbcType=VARCHAR}, 
+      #{specialAuthority,jdbcType=VARCHAR}, #{specialApprovaldate,jdbcType=VARCHAR}, 
+      #{specialEffectivedate,jdbcType=VARCHAR}, #{specialReview1,jdbcType=VARCHAR}, #{specialReview2,jdbcType=VARCHAR}, 
+      #{specialReview3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="shougang.guigang.safety.pojo.TbSpecialoperation">
+    insert into tb_specialOperation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="specialId != null">
+        special_id,
+      </if>
+      <if test="specialName != null">
+        special_name,
+      </if>
+      <if test="specialSex != null">
+        special_sex,
+      </if>
+      <if test="specialUnit != null">
+        special_unit,
+      </if>
+      <if test="specialTeam != null">
+        special_team,
+      </if>
+      <if test="specialCertificate != null">
+        special_certificate,
+      </if>
+      <if test="specialDossier != null">
+        special_dossier,
+      </if>
+      <if test="specialItem != null">
+        special_item,
+      </if>
+      <if test="specialItemcode != null">
+        special_itemCode,
+      </if>
+      <if test="specialAuthority != null">
+        special_authority,
+      </if>
+      <if test="specialApprovaldate != null">
+        special_approvalDate,
+      </if>
+      <if test="specialEffectivedate != null">
+        special_effectiveDate,
+      </if>
+      <if test="specialReview1 != null">
+        special_review1,
+      </if>
+      <if test="specialReview2 != null">
+        special_review2,
+      </if>
+      <if test="specialReview3 != null">
+        special_review3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="specialId != null">
+        #{specialId,jdbcType=VARCHAR},
+      </if>
+      <if test="specialName != null">
+        #{specialName,jdbcType=VARCHAR},
+      </if>
+      <if test="specialSex != null">
+        #{specialSex,jdbcType=VARCHAR},
+      </if>
+      <if test="specialUnit != null">
+        #{specialUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="specialTeam != null">
+        #{specialTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="specialCertificate != null">
+        #{specialCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="specialDossier != null">
+        #{specialDossier,jdbcType=VARCHAR},
+      </if>
+      <if test="specialItem != null">
+        #{specialItem,jdbcType=VARCHAR},
+      </if>
+      <if test="specialItemcode != null">
+        #{specialItemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialAuthority != null">
+        #{specialAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="specialApprovaldate != null">
+        #{specialApprovaldate,jdbcType=VARCHAR},
+      </if>
+      <if test="specialEffectivedate != null">
+        #{specialEffectivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="specialReview1 != null">
+        #{specialReview1,jdbcType=VARCHAR},
+      </if>
+      <if test="specialReview2 != null">
+        #{specialReview2,jdbcType=VARCHAR},
+      </if>
+      <if test="specialReview3 != null">
+        #{specialReview3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="shougang.guigang.safety.pojo.TbSpecialoperationExample" resultType="java.lang.Long">
+    select count(*) from tb_specialOperation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_specialOperation
+    <set>
+      <if test="record.specialId != null">
+        special_id = #{record.specialId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialName != null">
+        special_name = #{record.specialName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialSex != null">
+        special_sex = #{record.specialSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialUnit != null">
+        special_unit = #{record.specialUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialTeam != null">
+        special_team = #{record.specialTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialCertificate != null">
+        special_certificate = #{record.specialCertificate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialDossier != null">
+        special_dossier = #{record.specialDossier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialItem != null">
+        special_item = #{record.specialItem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialItemcode != null">
+        special_itemCode = #{record.specialItemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialAuthority != null">
+        special_authority = #{record.specialAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialApprovaldate != null">
+        special_approvalDate = #{record.specialApprovaldate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialEffectivedate != null">
+        special_effectiveDate = #{record.specialEffectivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialReview1 != null">
+        special_review1 = #{record.specialReview1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialReview2 != null">
+        special_review2 = #{record.specialReview2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialReview3 != null">
+        special_review3 = #{record.specialReview3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_specialOperation
+    set special_id = #{record.specialId,jdbcType=VARCHAR},
+      special_name = #{record.specialName,jdbcType=VARCHAR},
+      special_sex = #{record.specialSex,jdbcType=VARCHAR},
+      special_unit = #{record.specialUnit,jdbcType=VARCHAR},
+      special_team = #{record.specialTeam,jdbcType=VARCHAR},
+      special_certificate = #{record.specialCertificate,jdbcType=VARCHAR},
+      special_dossier = #{record.specialDossier,jdbcType=VARCHAR},
+      special_item = #{record.specialItem,jdbcType=VARCHAR},
+      special_itemCode = #{record.specialItemcode,jdbcType=VARCHAR},
+      special_authority = #{record.specialAuthority,jdbcType=VARCHAR},
+      special_approvalDate = #{record.specialApprovaldate,jdbcType=VARCHAR},
+      special_effectiveDate = #{record.specialEffectivedate,jdbcType=VARCHAR},
+      special_review1 = #{record.specialReview1,jdbcType=VARCHAR},
+      special_review2 = #{record.specialReview2,jdbcType=VARCHAR},
+      special_review3 = #{record.specialReview3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shougang.guigang.safety.mapper.TbOccupationhealthMapper">
+  <resultMap id="BaseResultMap" type="shougang.guigang.safety.pojo.TbOccupationhealth">
+    <result column="occupational_id" jdbcType="VARCHAR" property="occupationalId" />
+    <result column="occupational_name" jdbcType="VARCHAR" property="occupationalName" />
+    <result column="occupational_sex" jdbcType="VARCHAR" property="occupationalSex" />
+    <result column="occupational_age" jdbcType="VARCHAR" property="occupationalAge" />
+    <result column="occupational_unit" jdbcType="VARCHAR" property="occupationalUnit" />
+    <result column="occupational_team" jdbcType="VARCHAR" property="occupationalTeam" />
+    <result column="occupational_teamType" jdbcType="VARCHAR" property="occupationalTeamtype" />
+    <result column="occupational_post" jdbcType="VARCHAR" property="occupationalPost" />
+    <result column="occupational_workType" jdbcType="VARCHAR" property="occupationalWorktype" />
+    <result column="occupational_startWork" jdbcType="VARCHAR" property="occupationalStartwork" />
+    <result column="occupational_touchTime" jdbcType="VARCHAR" property="occupationalTouchtime" />
+    <result column="occupational_category" jdbcType="VARCHAR" property="occupationalCategory" />
+    <result column="occupational_specialItem" jdbcType="VARCHAR" property="occupationalSpecialitem" />
+    <result column="occupational_phone" jdbcType="VARCHAR" property="occupationalPhone" />
+    <result column="occupational_dossierNumber" jdbcType="VARCHAR" property="occupationalDossiernumber" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    occupational_id, occupational_name, occupational_sex, occupational_age, occupational_unit, 
+    occupational_team, occupational_teamType, occupational_post, occupational_workType, 
+    occupational_startWork, occupational_touchTime, occupational_category, occupational_specialItem, 
+    occupational_phone, occupational_dossierNumber
+  </sql>
+  <select id="selectByExample" parameterType="shougang.guigang.safety.pojo.TbOccupationhealthExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_occupationHealth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="shougang.guigang.safety.pojo.TbOccupationhealthExample">
+    delete from tb_occupationHealth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="shougang.guigang.safety.pojo.TbOccupationhealth">
+    insert into tb_occupationHealth (occupational_id, occupational_name, 
+      occupational_sex, occupational_age, occupational_unit, 
+      occupational_team, occupational_teamType, 
+      occupational_post, occupational_workType, 
+      occupational_startWork, occupational_touchTime, 
+      occupational_category, occupational_specialItem, 
+      occupational_phone, occupational_dossierNumber
+      )
+    values (#{occupationalId,jdbcType=VARCHAR}, #{occupationalName,jdbcType=VARCHAR}, 
+      #{occupationalSex,jdbcType=VARCHAR}, #{occupationalAge,jdbcType=VARCHAR}, #{occupationalUnit,jdbcType=VARCHAR}, 
+      #{occupationalTeam,jdbcType=VARCHAR}, #{occupationalTeamtype,jdbcType=VARCHAR}, 
+      #{occupationalPost,jdbcType=VARCHAR}, #{occupationalWorktype,jdbcType=VARCHAR}, 
+      #{occupationalStartwork,jdbcType=VARCHAR}, #{occupationalTouchtime,jdbcType=VARCHAR}, 
+      #{occupationalCategory,jdbcType=VARCHAR}, #{occupationalSpecialitem,jdbcType=VARCHAR}, 
+      #{occupationalPhone,jdbcType=VARCHAR}, #{occupationalDossiernumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="shougang.guigang.safety.pojo.TbOccupationhealth">
+    insert into tb_occupationHealth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="occupationalId != null">
+        occupational_id,
+      </if>
+      <if test="occupationalName != null">
+        occupational_name,
+      </if>
+      <if test="occupationalSex != null">
+        occupational_sex,
+      </if>
+      <if test="occupationalAge != null">
+        occupational_age,
+      </if>
+      <if test="occupationalUnit != null">
+        occupational_unit,
+      </if>
+      <if test="occupationalTeam != null">
+        occupational_team,
+      </if>
+      <if test="occupationalTeamtype != null">
+        occupational_teamType,
+      </if>
+      <if test="occupationalPost != null">
+        occupational_post,
+      </if>
+      <if test="occupationalWorktype != null">
+        occupational_workType,
+      </if>
+      <if test="occupationalStartwork != null">
+        occupational_startWork,
+      </if>
+      <if test="occupationalTouchtime != null">
+        occupational_touchTime,
+      </if>
+      <if test="occupationalCategory != null">
+        occupational_category,
+      </if>
+      <if test="occupationalSpecialitem != null">
+        occupational_specialItem,
+      </if>
+      <if test="occupationalPhone != null">
+        occupational_phone,
+      </if>
+      <if test="occupationalDossiernumber != null">
+        occupational_dossierNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="occupationalId != null">
+        #{occupationalId,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalName != null">
+        #{occupationalName,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalSex != null">
+        #{occupationalSex,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalAge != null">
+        #{occupationalAge,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalUnit != null">
+        #{occupationalUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalTeam != null">
+        #{occupationalTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalTeamtype != null">
+        #{occupationalTeamtype,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalPost != null">
+        #{occupationalPost,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalWorktype != null">
+        #{occupationalWorktype,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalStartwork != null">
+        #{occupationalStartwork,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalTouchtime != null">
+        #{occupationalTouchtime,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalCategory != null">
+        #{occupationalCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalSpecialitem != null">
+        #{occupationalSpecialitem,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalPhone != null">
+        #{occupationalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationalDossiernumber != null">
+        #{occupationalDossiernumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="shougang.guigang.safety.pojo.TbOccupationhealthExample" resultType="java.lang.Long">
+    select count(*) from tb_occupationHealth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_occupationHealth
+    <set>
+      <if test="record.occupationalId != null">
+        occupational_id = #{record.occupationalId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalName != null">
+        occupational_name = #{record.occupationalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalSex != null">
+        occupational_sex = #{record.occupationalSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalAge != null">
+        occupational_age = #{record.occupationalAge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalUnit != null">
+        occupational_unit = #{record.occupationalUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalTeam != null">
+        occupational_team = #{record.occupationalTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalTeamtype != null">
+        occupational_teamType = #{record.occupationalTeamtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalPost != null">
+        occupational_post = #{record.occupationalPost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalWorktype != null">
+        occupational_workType = #{record.occupationalWorktype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalStartwork != null">
+        occupational_startWork = #{record.occupationalStartwork,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalTouchtime != null">
+        occupational_touchTime = #{record.occupationalTouchtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalCategory != null">
+        occupational_category = #{record.occupationalCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalSpecialitem != null">
+        occupational_specialItem = #{record.occupationalSpecialitem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalPhone != null">
+        occupational_phone = #{record.occupationalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupationalDossiernumber != null">
+        occupational_dossierNumber = #{record.occupationalDossiernumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_occupationHealth
+    set occupational_id = #{record.occupationalId,jdbcType=VARCHAR},
+      occupational_name = #{record.occupationalName,jdbcType=VARCHAR},
+      occupational_sex = #{record.occupationalSex,jdbcType=VARCHAR},
+      occupational_age = #{record.occupationalAge,jdbcType=VARCHAR},
+      occupational_unit = #{record.occupationalUnit,jdbcType=VARCHAR},
+      occupational_team = #{record.occupationalTeam,jdbcType=VARCHAR},
+      occupational_teamType = #{record.occupationalTeamtype,jdbcType=VARCHAR},
+      occupational_post = #{record.occupationalPost,jdbcType=VARCHAR},
+      occupational_workType = #{record.occupationalWorktype,jdbcType=VARCHAR},
+      occupational_startWork = #{record.occupationalStartwork,jdbcType=VARCHAR},
+      occupational_touchTime = #{record.occupationalTouchtime,jdbcType=VARCHAR},
+      occupational_category = #{record.occupationalCategory,jdbcType=VARCHAR},
+      occupational_specialItem = #{record.occupationalSpecialitem,jdbcType=VARCHAR},
+      occupational_phone = #{record.occupationalPhone,jdbcType=VARCHAR},
+      occupational_dossierNumber = #{record.occupationalDossiernumber,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

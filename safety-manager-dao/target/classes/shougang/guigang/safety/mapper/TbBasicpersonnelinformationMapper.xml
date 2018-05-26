@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shougang.guigang.safety.mapper.TbBasicpersonnelinformationMapper">
+  <resultMap id="BaseResultMap" type="shougang.guigang.safety.pojo.TbBasicpersonnelinformation">
+    <result column="person_id" jdbcType="VARCHAR" property="personId" />
+    <result column="person_password" jdbcType="VARCHAR" property="personPassword" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="person_sex" jdbcType="VARCHAR" property="personSex" />
+    <result column="person_age" jdbcType="TINYINT" property="personAge" />
+    <result column="person_birthday" jdbcType="DATE" property="personBirthday" />
+    <result column="person_education" jdbcType="VARCHAR" property="personEducation" />
+    <result column="person_unit" jdbcType="VARCHAR" property="personUnit" />
+    <result column="person_post" jdbcType="VARCHAR" property="personPost" />
+    <result column="person_team" jdbcType="VARCHAR" property="personTeam" />
+    <result column="person_political" jdbcType="VARCHAR" property="personPolitical" />
+    <result column="person_nativePlace" jdbcType="VARCHAR" property="personNativeplace" />
+    <result column="person_address" jdbcType="VARCHAR" property="personAddress" />
+    <result column="person_startWork" jdbcType="DATE" property="personStartwork" />
+    <result column="person_start3work" jdbcType="DATE" property="personStart3work" />
+    <result column="person_startPost" jdbcType="VARCHAR" property="personStartpost" />
+    <result column="person_postLevel" jdbcType="VARCHAR" property="personPostlevel" />
+    <result column="person_workType" jdbcType="VARCHAR" property="personWorktype" />
+    <result column="person_special" jdbcType="VARCHAR" property="personSpecial" />
+    <result column="person_oneCard" jdbcType="VARCHAR" property="personOnecard" />
+    <result column="person_phone" jdbcType="VARCHAR" property="personPhone" />
+    <result column="person_emergencyPerson" jdbcType="VARCHAR" property="personEmergencyperson" />
+    <result column="person_emergencyNumber" jdbcType="VARCHAR" property="personEmergencynumber" />
+    <result column="person_isSoldier" jdbcType="VARCHAR" property="personIssoldier" />
+    <result column="person_isInjury" jdbcType="TINYINT" property="personIsinjury" />
+    <result column="person_isAdmin" jdbcType="TINYINT" property="personIsadmin" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    person_id, person_password, person_name, person_sex, person_age, person_birthday, 
+    person_education, person_unit, person_post, person_team, person_political, person_nativePlace, 
+    person_address, person_startWork, person_start3work, person_startPost, person_postLevel, 
+    person_workType, person_special, person_oneCard, person_phone, person_emergencyPerson, 
+    person_emergencyNumber, person_isSoldier, person_isInjury, person_isAdmin
+  </sql>
+  <select id="selectByExample" parameterType="shougang.guigang.safety.pojo.TbBasicpersonnelinformationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_basicPersonnelInformation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="shougang.guigang.safety.pojo.TbBasicpersonnelinformationExample">
+    delete from tb_basicPersonnelInformation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="shougang.guigang.safety.pojo.TbBasicpersonnelinformation">
+    insert into tb_basicPersonnelInformation (person_id, person_password, person_name, 
+      person_sex, person_age, person_birthday, 
+      person_education, person_unit, person_post, 
+      person_team, person_political, person_nativePlace, 
+      person_address, person_startWork, person_start3work, 
+      person_startPost, person_postLevel, person_workType, 
+      person_special, person_oneCard, person_phone, 
+      person_emergencyPerson, person_emergencyNumber, 
+      person_isSoldier, person_isInjury, person_isAdmin
+      )
+    values (#{personId,jdbcType=VARCHAR}, #{personPassword,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, 
+      #{personSex,jdbcType=VARCHAR}, #{personAge,jdbcType=TINYINT}, #{personBirthday,jdbcType=DATE}, 
+      #{personEducation,jdbcType=VARCHAR}, #{personUnit,jdbcType=VARCHAR}, #{personPost,jdbcType=VARCHAR}, 
+      #{personTeam,jdbcType=VARCHAR}, #{personPolitical,jdbcType=VARCHAR}, #{personNativeplace,jdbcType=VARCHAR}, 
+      #{personAddress,jdbcType=VARCHAR}, #{personStartwork,jdbcType=DATE}, #{personStart3work,jdbcType=DATE}, 
+      #{personStartpost,jdbcType=VARCHAR}, #{personPostlevel,jdbcType=VARCHAR}, #{personWorktype,jdbcType=VARCHAR}, 
+      #{personSpecial,jdbcType=VARCHAR}, #{personOnecard,jdbcType=VARCHAR}, #{personPhone,jdbcType=VARCHAR}, 
+      #{personEmergencyperson,jdbcType=VARCHAR}, #{personEmergencynumber,jdbcType=VARCHAR}, 
+      #{personIssoldier,jdbcType=VARCHAR}, #{personIsinjury,jdbcType=TINYINT}, #{personIsadmin,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="shougang.guigang.safety.pojo.TbBasicpersonnelinformation">
+    insert into tb_basicPersonnelInformation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personId != null">
+        person_id,
+      </if>
+      <if test="personPassword != null">
+        person_password,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="personSex != null">
+        person_sex,
+      </if>
+      <if test="personAge != null">
+        person_age,
+      </if>
+      <if test="personBirthday != null">
+        person_birthday,
+      </if>
+      <if test="personEducation != null">
+        person_education,
+      </if>
+      <if test="personUnit != null">
+        person_unit,
+      </if>
+      <if test="personPost != null">
+        person_post,
+      </if>
+      <if test="personTeam != null">
+        person_team,
+      </if>
+      <if test="personPolitical != null">
+        person_political,
+      </if>
+      <if test="personNativeplace != null">
+        person_nativePlace,
+      </if>
+      <if test="personAddress != null">
+        person_address,
+      </if>
+      <if test="personStartwork != null">
+        person_startWork,
+      </if>
+      <if test="personStart3work != null">
+        person_start3work,
+      </if>
+      <if test="personStartpost != null">
+        person_startPost,
+      </if>
+      <if test="personPostlevel != null">
+        person_postLevel,
+      </if>
+      <if test="personWorktype != null">
+        person_workType,
+      </if>
+      <if test="personSpecial != null">
+        person_special,
+      </if>
+      <if test="personOnecard != null">
+        person_oneCard,
+      </if>
+      <if test="personPhone != null">
+        person_phone,
+      </if>
+      <if test="personEmergencyperson != null">
+        person_emergencyPerson,
+      </if>
+      <if test="personEmergencynumber != null">
+        person_emergencyNumber,
+      </if>
+      <if test="personIssoldier != null">
+        person_isSoldier,
+      </if>
+      <if test="personIsinjury != null">
+        person_isInjury,
+      </if>
+      <if test="personIsadmin != null">
+        person_isAdmin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="personPassword != null">
+        #{personPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="personSex != null">
+        #{personSex,jdbcType=VARCHAR},
+      </if>
+      <if test="personAge != null">
+        #{personAge,jdbcType=TINYINT},
+      </if>
+      <if test="personBirthday != null">
+        #{personBirthday,jdbcType=DATE},
+      </if>
+      <if test="personEducation != null">
+        #{personEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="personUnit != null">
+        #{personUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="personPost != null">
+        #{personPost,jdbcType=VARCHAR},
+      </if>
+      <if test="personTeam != null">
+        #{personTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="personPolitical != null">
+        #{personPolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="personNativeplace != null">
+        #{personNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="personAddress != null">
+        #{personAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="personStartwork != null">
+        #{personStartwork,jdbcType=DATE},
+      </if>
+      <if test="personStart3work != null">
+        #{personStart3work,jdbcType=DATE},
+      </if>
+      <if test="personStartpost != null">
+        #{personStartpost,jdbcType=VARCHAR},
+      </if>
+      <if test="personPostlevel != null">
+        #{personPostlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="personWorktype != null">
+        #{personWorktype,jdbcType=VARCHAR},
+      </if>
+      <if test="personSpecial != null">
+        #{personSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="personOnecard != null">
+        #{personOnecard,jdbcType=VARCHAR},
+      </if>
+      <if test="personPhone != null">
+        #{personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personEmergencyperson != null">
+        #{personEmergencyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="personEmergencynumber != null">
+        #{personEmergencynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="personIssoldier != null">
+        #{personIssoldier,jdbcType=VARCHAR},
+      </if>
+      <if test="personIsinjury != null">
+        #{personIsinjury,jdbcType=TINYINT},
+      </if>
+      <if test="personIsadmin != null">
+        #{personIsadmin,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="shougang.guigang.safety.pojo.TbBasicpersonnelinformationExample" resultType="java.lang.Long">
+    select count(*) from tb_basicPersonnelInformation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_basicPersonnelInformation
+    <set>
+      <if test="record.personId != null">
+        person_id = #{record.personId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personPassword != null">
+        person_password = #{record.personPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personName != null">
+        person_name = #{record.personName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personSex != null">
+        person_sex = #{record.personSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personAge != null">
+        person_age = #{record.personAge,jdbcType=TINYINT},
+      </if>
+      <if test="record.personBirthday != null">
+        person_birthday = #{record.personBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.personEducation != null">
+        person_education = #{record.personEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personUnit != null">
+        person_unit = #{record.personUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personPost != null">
+        person_post = #{record.personPost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personTeam != null">
+        person_team = #{record.personTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personPolitical != null">
+        person_political = #{record.personPolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personNativeplace != null">
+        person_nativePlace = #{record.personNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personAddress != null">
+        person_address = #{record.personAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personStartwork != null">
+        person_startWork = #{record.personStartwork,jdbcType=DATE},
+      </if>
+      <if test="record.personStart3work != null">
+        person_start3work = #{record.personStart3work,jdbcType=DATE},
+      </if>
+      <if test="record.personStartpost != null">
+        person_startPost = #{record.personStartpost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personPostlevel != null">
+        person_postLevel = #{record.personPostlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personWorktype != null">
+        person_workType = #{record.personWorktype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personSpecial != null">
+        person_special = #{record.personSpecial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personOnecard != null">
+        person_oneCard = #{record.personOnecard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personPhone != null">
+        person_phone = #{record.personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personEmergencyperson != null">
+        person_emergencyPerson = #{record.personEmergencyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personEmergencynumber != null">
+        person_emergencyNumber = #{record.personEmergencynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personIssoldier != null">
+        person_isSoldier = #{record.personIssoldier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personIsinjury != null">
+        person_isInjury = #{record.personIsinjury,jdbcType=TINYINT},
+      </if>
+      <if test="record.personIsadmin != null">
+        person_isAdmin = #{record.personIsadmin,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_basicPersonnelInformation
+    set person_id = #{record.personId,jdbcType=VARCHAR},
+      person_password = #{record.personPassword,jdbcType=VARCHAR},
+      person_name = #{record.personName,jdbcType=VARCHAR},
+      person_sex = #{record.personSex,jdbcType=VARCHAR},
+      person_age = #{record.personAge,jdbcType=TINYINT},
+      person_birthday = #{record.personBirthday,jdbcType=DATE},
+      person_education = #{record.personEducation,jdbcType=VARCHAR},
+      person_unit = #{record.personUnit,jdbcType=VARCHAR},
+      person_post = #{record.personPost,jdbcType=VARCHAR},
+      person_team = #{record.personTeam,jdbcType=VARCHAR},
+      person_political = #{record.personPolitical,jdbcType=VARCHAR},
+      person_nativePlace = #{record.personNativeplace,jdbcType=VARCHAR},
+      person_address = #{record.personAddress,jdbcType=VARCHAR},
+      person_startWork = #{record.personStartwork,jdbcType=DATE},
+      person_start3work = #{record.personStart3work,jdbcType=DATE},
+      person_startPost = #{record.personStartpost,jdbcType=VARCHAR},
+      person_postLevel = #{record.personPostlevel,jdbcType=VARCHAR},
+      person_workType = #{record.personWorktype,jdbcType=VARCHAR},
+      person_special = #{record.personSpecial,jdbcType=VARCHAR},
+      person_oneCard = #{record.personOnecard,jdbcType=VARCHAR},
+      person_phone = #{record.personPhone,jdbcType=VARCHAR},
+      person_emergencyPerson = #{record.personEmergencyperson,jdbcType=VARCHAR},
+      person_emergencyNumber = #{record.personEmergencynumber,jdbcType=VARCHAR},
+      person_isSoldier = #{record.personIssoldier,jdbcType=VARCHAR},
+      person_isInjury = #{record.personIsinjury,jdbcType=TINYINT},
+      person_isAdmin = #{record.personIsadmin,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
